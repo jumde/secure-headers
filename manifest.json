@@ -1,0 +1,18 @@
+{
+  "manifest_version": 2,
+
+  "name": "Secure Headers",
+  "description": "This extension will highlight any missing security headers for a page load",
+  "version": "1.0",
+  "browser_action": {
+   "default_icon": "icon.png",
+   "default_popup": "popup.html"
+  },
+  "permissions": [
+    "tabs",
+    "notifications",
+    "webRequest",
+    "webRequestBlocking",
+    "<all_urls>"
+  ]
+}
