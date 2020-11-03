@@ -1,0 +1,5 @@
+security_headers = [ 
+    'x-frame-options',
+    'x-xss-protection',
+    'random-security-header'
+]
