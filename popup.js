@@ -1,6 +1,7 @@
 function missingSecurityHeaders(headers) {
     var securityHeaders = security_headers;
-    console.log(securityHeaders);
+    console.log("Headers");
+    console.log(headers);
     var op = headers.map(function(item) {
         return item.name.toLowerCase();
     });
@@ -28,11 +29,16 @@ function showHeaders(headers, type) {
    return p;
 }
 
-function addOriginToList(url, requestHeaders, responseHeaders) {
+function updateView(url, headers) {
+    document.getElementById('reload-page').hidden = true; 
+    document.getElementById('title').hidden = false; 
+    console.log("Headers for URL");
+    console.log(headers);
+        
     div = document.createElement("div");
     origin = document.createTextNode("URL: " + url);
     div.appendChild(origin);
-    missingHeaders = missingSecurityHeaders(responseHeaders);
+    missingHeaders = missingSecurityHeaders(headers);
     missingHeadersHTML = showHeaders(missingHeaders, 'missing-headers');
     div.appendChild(missingHeadersHTML);
     allHeadersButton = document.createElement("button");
@@ -43,12 +49,23 @@ function addOriginToList(url, requestHeaders, responseHeaders) {
     document.body.appendChild(div);
 }
 
-chrome.tabs.getSelected(null, function(tab){ 
+/*
+chrome.runtime.onMessage.addListener(presentSecurityWarningsForHeaders);
+
+function presentSecurityWarningsForHeaders(headersForUrl) {
+   console.log("Updating View");
+   updateView(headersForUrl); 
+}*/
+
+chrome.tabs.getSelected(null, function(tab){
     currentTabId = tab.id;
-    console.log("tab id in getselected "+currentTabId);
     chrome.webRequest.onHeadersReceived.addListener(
         function(details) {
-            addOriginToList(details.url, details.requestHeaders, details.responseHeaders);
+            if(!details.hasOwnProperty("url")) {
+                return;
+            }
+            url = details.url
+            updateView(details.url, details.responseHeaders);
             return {responseHeaders: details.responseHeaders};
         },
         // filters

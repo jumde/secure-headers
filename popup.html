@@ -2,10 +2,13 @@
 <html>
   <head>
     <title>Secure Headers</title>
+    <link rel="stylesheet" href="popup.css">
     <script type="text/javascript" src="security_headers.json"></script>
     <script type="text/javascript" src="popup.js"></script>
   </head>
   <body>
-    <h2>Secure Headers</h2>
+    <button id="reload-page">Analyze headers on the current tab</button>
+    <h1 id="title" hidden>Secure Headers</h1>
   </body>
+  <script type="text/javascript" src="refresh.js"></script>
 </html>

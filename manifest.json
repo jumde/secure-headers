@@ -12,7 +12,6 @@
     "tabs",
     "notifications",
     "webRequest",
-    "webRequestBlocking",
     "<all_urls>"
   ]
 }
