@@ -1,5 +1,7 @@
 security_headers = [ 
     'x-frame-options',
     'x-xss-protection',
-    'random-security-header'
+    'content-security-policy',
+    'strict-transport-security',
+    'upgrade-insecure-requests'
 ]

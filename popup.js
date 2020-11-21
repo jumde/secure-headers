@@ -41,11 +41,7 @@ function updateView(url, headers) {
     missingHeaders = missingSecurityHeaders(headers);
     missingHeadersHTML = showHeaders(missingHeaders, 'missing-headers');
     div.appendChild(missingHeadersHTML);
-    allHeadersButton = document.createElement("button");
-    allHeadersButtonText = document.createTextNode("All headers");
-    allHeadersButton.appendChild(allHeadersButtonText);
     div.appendChild(document.createElement("br"));
-    div.appendChild(allHeadersButton);
     document.body.appendChild(div);
 }
 
